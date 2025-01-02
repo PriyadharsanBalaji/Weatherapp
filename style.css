@@ -1,0 +1,235 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sun Doodle */
+.sun-doodle {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+}
+
+.sun {
+    width: 80px;
+    height: 80px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #ffd700;
+    animation: float 4s ease-in-out infinite;
+}
+
+.rays {
+    position: absolute;
+    inset: -20px;
+    animation: rotate 20s linear infinite;
+}
+
+.rays::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-conic-gradient(from 0deg,
+        transparent 0deg,
+        transparent 20deg,
+        #ffd700 20deg,
+        #ffd700 25deg);
+}
+
+/* Moon Doodle */
+.moon-doodle {
+    position: absolute;
+    top: 80px;
+    left: 100px;
+}
+
+.moon {
+    width: 60px;
+    height: 60px;
+    background: #e1e1e1;
+    border-radius: 50%;
+    box-shadow: 0 0 30px #ffffff80;
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+}
+
+.crater {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #d1d1d1;
+    border-radius: 50%;
+    top: 15px;
+    right: 10px;
+}
+
+/* Rain Effect */
+.rain-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rain {
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(transparent, #fff);
+    animation: rain 1s linear infinite;
+}
+
+.rain::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100vh;
+    background: linear-gradient(transparent, #fff);
+    animation: rain 1s linear infinite;
+    animation-delay: -0.5s;
+}
+
+/* Pebbles */
+.pebble {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(145deg, #808080, #a0a0a0);
+    border-radius: 50%;
+    cursor: move;
+    transition: transform 0.3s;
+}
+
+.pebble:hover {
+    transform: scale(1.2) rotate(45deg);
+}
+
+/* Search Form */
+.search-form {
+    position: relative;
+    width: 400px;
+    z-index: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1.1em;
+    transition: transform 0.3s;
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+/* Weather Card */
+.weather-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    transform: translateY(20px);
+    animation: slideUp 0.5s forwards;
+}
+
+.city {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.temperature {
+    font-size: 4em;
+    margin: 20px 0;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detail {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.detail:hover {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rain {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .search-form {
+        width: 90%;
+    }
+    
+    .weather-card {
+        width: 90%;
+        margin: 20px auto;
+    }
+}
